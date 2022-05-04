@@ -47,7 +47,7 @@ jobs:
       name: Run Configure (Windows)
       run: ./configure
     - name: Compile Code
-      run: make CXX=${{matrix.cc}}
+      run: make CXX='${{matrix.cc}}'
     - if: ${{runner.os == 'macOS'}}
       name: Rename macOS Binary
       run: mv src/emusc src/emusc-${{matrix.bin}} && chmod +x src/emusc-${{matrix.bin}}

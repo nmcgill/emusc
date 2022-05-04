@@ -52,7 +52,7 @@ jobs:
       with:
         name: build-${{runner.os}}
         path: |
-          src/emusc-${{matrix.bin}}*
+          src/${{matrix.bin}}
 
   publish:
     needs: build

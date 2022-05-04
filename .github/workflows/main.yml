@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
        include:
-        - { os: windows-latest, cc: g++,     shell: 'msys2 {0}', bin: 'emusc-win32-x86_64.exe', dep: 'mingw-w64-x86_64-gcc make autotools',    flags: ''}
-        - { os: ubuntu-latest,  cc: g++-10,  shell: bash,        bin: 'emusc-linux-x86_64',     dep: 'sudo apt-get install -y libasound2-dev', flags: "CXXFLAGS='-pthread'" }
-        - { os: macos-latest,   cc: clang++, shell: bash,        bin: 'emusc-macOS-x86_64',     dep: 'brew install autoconf automake libtool', flags: "CXXFLAGS='-std=c++11'" }
+        - { os: windows-latest, cc: g++,     shell: 'msys2 {0}', out: 'emusc.exe', bin: 'emusc-win32-x86_64.exe', dep: 'mingw-w64-x86_64-gcc make autotools',    flags: ''}
+        - { os: ubuntu-latest,  cc: g++-10,  shell: bash,        out: 'emusc',     bin: 'emusc-linux-x86_64',     dep: 'sudo apt-get install -y libasound2-dev', flags: "CXXFLAGS='-pthread'" }
+        - { os: macos-latest,   cc: clang++, shell: bash,        out: 'emusc',     bin: 'emusc-macOS-x86_64',     dep: 'brew install autoconf automake libtool', flags: "CXXFLAGS='-std=c++11'" }
     runs-on: ${{matrix.os}}
     defaults:
       run:
@@ -45,7 +45,7 @@ jobs:
       run: make CXX='${{matrix.cc}}'
 
     - name: Rename Binary
-      run: mv src/emusc* src/${{matrix.bin}}
+      run: mv src/${{matrix.out}} src/${{matrix.bin}}
 
     - name: Upload All Binaries
       uses: actions/upload-artifact@v2

@@ -50,10 +50,10 @@ jobs:
       run: make CXX=${{matrix.cc}}
     - if: ${{runner.os == 'macOS'}}
       name: Rename macOS Binary
-      run: mv src/emusc src/emusc-${{matrix.bin}}
+      run: mv src/emusc src/emusc-${{matrix.bin}} && chmod +x src/emusc-${{matrix.bin}}
     - if: ${{runner.os == 'Linux'}}
       name: Rename Linux Binary
-      run: mv src/emusc src/emusc-${{matrix.bin}}
+      run: mv src/emusc src/emusc-${{matrix.bin}} && chmod +x src/emusc-${{matrix.bin}}
     - if: ${{runner.os == 'Windows'}}
       name: Rename Windows Binary
       run: mv src/emusc.exe src/emusc-${{matrix.bin}}.exe

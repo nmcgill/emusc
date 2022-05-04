@@ -15,7 +15,7 @@ jobs:
        include:
         - { os: windows-latest, cc: g++, shell: 'msys2 {0}', bin: 'win32-x86_64'}
         - { os: ubuntu-latest, cc: g++-10, shell: bash, bin: 'linux-x86_64'}
-        - { os: macos-latest, cc: clang, shell: bash, bin: 'macOS-x86_64'}
+        - { os: macos-latest, cc: clang++, shell: bash, bin: 'macOS-x86_64'}
     runs-on: ${{matrix.os}}
     defaults:
       run:
